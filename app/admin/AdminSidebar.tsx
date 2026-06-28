@@ -12,11 +12,11 @@ interface AdminSidebarProps {
 }
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard, exact: true },
-  { href: "/products", label: "Produits", icon: Package },
-  { href: "/orders", label: "Commandes", icon: ShoppingBag },
-  { href: "/promotions", label: "Promotions", icon: Tag },
-  { href: "/users", label: "Admins", icon: Users, superOnly: true },
+  { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { href: "/admin/products", label: "Produits", icon: Package },
+  { href: "/admin/orders", label: "Commandes", icon: ShoppingBag },
+  { href: "/admin/promotions", label: "Promotions", icon: Tag },
+  { href: "/admin/users", label: "Admins", icon: Users, superOnly: true },
 ];
 
 export default function AdminSidebar({ session }: AdminSidebarProps) {
@@ -33,7 +33,7 @@ export default function AdminSidebar({ session }: AdminSidebarProps) {
             <Zap className="w-4 h-4 text-white" />
           </div>
           <span className="font-semibold text-lg">
-            Vitalis<span className="text-emerald-400">homeandwellness</span>
+            Vitalis<span className="text-emerald-400">home and wellness</span>
           </span>
         </div>
         <p className="text-xs text-gray-500 mt-1">Administration</p>

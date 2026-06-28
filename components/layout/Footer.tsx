@@ -18,16 +18,12 @@ export default async function Footer({ locale }: FooterProps) {
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="">
-                <Image
-                  src={logo.src}
-                  alt="Vitalis Home and Wellness - Électronique et Domotique"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-cover"
-                  priority
-                />
-              </div>
+              <img
+                src={logo.src}
+                alt="Vitalis Home and Wellness - Électronique et Domotique"
+                className="size-6 object-cover"
+                priority
+              />
               <span className="font-semibold text-sm tracking-tight">
                 Vitalis<span className="text-emerald-400">Home and Wellness</span>
               </span>
