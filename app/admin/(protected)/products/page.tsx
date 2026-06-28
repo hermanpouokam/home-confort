@@ -71,7 +71,7 @@ export default async function AdminProductsPage() {
                   <td className="px-4 py-3 hidden sm:table-cell">
                     <div className="flex items-center gap-1.5">
                       <Badge variant={product.active ? "default" : "secondary"}>{product.active ? "Actif" : "Inactif"}</Badge>
-                      {product.featured && <Badge className="flex items-center gap-1"><Star className="w-3 h-3 text-amber-400" /></Badge>}
+                      {product.featured && <Badge className="flex items-center gap-1">⭐</Badge>}
                     </div>
                   </td>
                   <td className="px-4 py-3 text-right">
