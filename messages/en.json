@@ -1,0 +1,148 @@
+{
+  "nav": {
+    "shop": "Shop",
+    "cart": "Cart",
+    "admin": "Admin",
+    "home": "Home"
+  },
+  "promo": {
+    "text": "Exclusive deals — Up to -30% on selected items!"
+  },
+  "hero": {
+    "title": "Comfort & Technology\nfor your everyday life",
+    "subtitle": "Discover our selection of smart devices and quality local food products.",
+    "cta": "Explore the shop",
+    "ctaSecondary": "See deals"
+  },
+  "trust": {
+    "delivery": "Fast delivery",
+    "quality": "Guaranteed quality",
+    "support": "Responsive support"
+  },
+  "categories": {
+    "title": "Our categories",
+    "electronics": "Electronics & Smart Home",
+    "food": "Food & Grocery",
+    "products": "products",
+    "discover": "Discover"
+  },
+  "featured": {
+    "title": "Our bestsellers",
+    "subtitle": "The most loved products by our customers"
+  },
+  "reassurance": {
+    "title": "Why choose Vitalis Home and Wellness?",
+    "address": "Our address",
+    "addressDesc": "Douala, Cameroon",
+    "delivery": "Fast delivery",
+    "deliveryDesc": "Anywhere in Douala within 24h",
+    "support": "Customer service",
+    "supportDesc": "Available 7 days a week, 8am to 8pm",
+    "payment": "Secure payment",
+    "paymentDesc": "Mobile Money & Cash"
+  },
+  "product": {
+    "addToCart": "Add to cart",
+    "outOfStock": "Out of stock",
+    "inStock": "In stock",
+    "lowStock": "Only {count} left",
+    "quantity": "Quantity",
+    "similarProducts": "Similar products",
+    "backToShop": "Back to shop",
+    "addedToCart": "Added to cart"
+  },
+  "shop": {
+    "title": "Shop",
+    "allProducts": "All products",
+    "search": "Search for a product...",
+    "filter": "Filter",
+    "sort": "Sort by",
+    "sortOptions": {
+      "newest": "Newest",
+      "priceAsc": "Price: low to high",
+      "priceDesc": "Price: high to low",
+      "featured": "Bestsellers"
+    },
+    "noProducts": "No products found",
+    "results": "{count} product(s) found",
+    "priceRange": "Price range",
+    "category": "Category",
+    "allCategories": "All categories",
+    "loadMore": "Load more"
+  },
+  "cart": {
+    "title": "My cart",
+    "empty": "Your cart is empty",
+    "emptyDesc": "Browse our products and add them to your cart.",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shippingFree": "Free",
+    "checkout": "Proceed to checkout",
+    "continueShopping": "Continue shopping",
+    "remove": "Remove",
+    "items": "{count} item(s)"
+  },
+  "checkout": {
+    "title": "Complete my order",
+    "step1": "Information",
+    "step2": "Delivery",
+    "step3": "Confirmation",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "district": "District",
+    "zip": "Zip code",
+    "deliveryMode": "Delivery method",
+    "standard": "Standard delivery",
+    "express": "Express delivery",
+    "relay": "Pickup point",
+    "deliverySlot": "Delivery slot",
+    "morning": "Morning (8am-12pm)",
+    "afternoon": "Afternoon (12pm-5pm)",
+    "evening": "Evening (5pm-8pm)",
+    "notes": "Special instructions (optional)",
+    "notesPlaceholder": "Ring twice, gate code...",
+    "confirm": "Confirm my order",
+    "next": "Next",
+    "back": "Back",
+    "orderSummary": "Order summary",
+    "free": "Free",
+    "standardPrice": "1,500 FCFA",
+    "expressPrice": "3,000 FCFA"
+  },
+  "orderSuccess": {
+    "title": "Order confirmed!",
+    "subtitle": "Thank you for your order",
+    "message": "Your order has been registered. You will receive a confirmation by SMS. Our team will contact you to confirm delivery.",
+    "orderNumber": "Order number",
+    "backToHome": "Back to home",
+    "continueShopping": "Continue shopping"
+  },
+  "footer": {
+    "description": "Your trusted partner for connected electronics and quality local food products in Douala.",
+    "shop": "Shop",
+    "company": "Company",
+    "contact": "Contact",
+    "aboutUs": "About us",
+    "allProducts": "All products",
+    "electronics": "Electronics",
+    "food": "Food",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "address": "Douala, Cameroon",
+    "copyright": "All rights reserved."
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "orders": "Orders",
+    "users": "Administrators",
+    "logout": "Logout",
+    "welcome": "Hello",
+    "today": "Today"
+  }
+}

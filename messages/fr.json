@@ -1,0 +1,148 @@
+{
+  "nav": {
+    "shop": "Boutique",
+    "cart": "Panier",
+    "admin": "Admin",
+    "home": "Accueil"
+  },
+  "promo": {
+    "text": "Promotions exclusives — Jusqu'à -30% sur une sélection !"
+  },
+  "hero": {
+    "title": "Confort & Technologie\npour votre quotidien",
+    "subtitle": "Découvrez notre sélection d'appareils connectés et de produits alimentaires locaux de qualité.",
+    "cta": "Découvrir la boutique",
+    "ctaSecondary": "Voir les offres"
+  },
+  "trust": {
+    "delivery": "Livraison rapide",
+    "quality": "Qualité garantie",
+    "support": "Support réactif"
+  },
+  "categories": {
+    "title": "Nos catégories",
+    "electronics": "Électronique & Domotique",
+    "food": "Alimentation",
+    "products": "produits",
+    "discover": "Découvrir"
+  },
+  "featured": {
+    "title": "Nos bestsellers",
+    "subtitle": "Les produits les plus appréciés par nos clients"
+  },
+  "reassurance": {
+    "title": "Pourquoi choisir Vitalis Home and Wellness ?",
+    "address": "Notre adresse",
+    "addressDesc": "Douala, Cameroun",
+    "delivery": "Livraison rapide",
+    "deliveryDesc": "Partout à Douala sous 24h",
+    "support": "Service client",
+    "supportDesc": "Disponible 7j/7 de 8h à 20h",
+    "payment": "Paiement sécurisé",
+    "paymentDesc": "Mobile Money & Espèces"
+  },
+  "product": {
+    "addToCart": "Ajouter au panier",
+    "outOfStock": "Rupture de stock",
+    "inStock": "En stock",
+    "lowStock": "Plus que {count} en stock",
+    "quantity": "Quantité",
+    "similarProducts": "Produits similaires",
+    "backToShop": "Retour à la boutique",
+    "addedToCart": "Ajouté au panier"
+  },
+  "shop": {
+    "title": "Boutique",
+    "allProducts": "Tous les produits",
+    "search": "Rechercher un produit...",
+    "filter": "Filtrer",
+    "sort": "Trier par",
+    "sortOptions": {
+      "newest": "Plus récents",
+      "priceAsc": "Prix croissant",
+      "priceDesc": "Prix décroissant",
+      "featured": "Bestsellers"
+    },
+    "noProducts": "Aucun produit trouvé",
+    "results": "{count} produit(s) trouvé(s)",
+    "priceRange": "Fourchette de prix",
+    "category": "Catégorie",
+    "allCategories": "Toutes catégories",
+    "loadMore": "Charger plus"
+  },
+  "cart": {
+    "title": "Mon panier",
+    "empty": "Votre panier est vide",
+    "emptyDesc": "Découvrez nos produits et ajoutez-les à votre panier.",
+    "total": "Total",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "shippingFree": "Gratuite",
+    "checkout": "Passer la commande",
+    "continueShopping": "Continuer les achats",
+    "remove": "Supprimer",
+    "items": "{count} article(s)"
+  },
+  "checkout": {
+    "title": "Finaliser ma commande",
+    "step1": "Informations",
+    "step2": "Livraison",
+    "step3": "Confirmation",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "city": "Ville",
+    "district": "Quartier",
+    "zip": "Code postal",
+    "deliveryMode": "Mode de livraison",
+    "standard": "Livraison standard",
+    "express": "Livraison express",
+    "relay": "Point relais",
+    "deliverySlot": "Créneau de livraison",
+    "morning": "Matin (8h-12h)",
+    "afternoon": "Après-midi (12h-17h)",
+    "evening": "Soir (17h-20h)",
+    "notes": "Instructions spéciales (optionnel)",
+    "notesPlaceholder": "Sonnez deux fois, code portail...",
+    "confirm": "Confirmer ma commande",
+    "next": "Suivant",
+    "back": "Retour",
+    "orderSummary": "Récapitulatif",
+    "free": "Gratuite",
+    "standardPrice": "1 500 FCFA",
+    "expressPrice": "3 000 FCFA"
+  },
+  "orderSuccess": {
+    "title": "Commande confirmée !",
+    "subtitle": "Merci pour votre commande",
+    "message": "Votre commande a bien été enregistrée. Vous recevrez une confirmation par SMS. Notre équipe vous contactera pour confirmer la livraison.",
+    "orderNumber": "Numéro de commande",
+    "backToHome": "Retour à l'accueil",
+    "continueShopping": "Continuer les achats"
+  },
+  "footer": {
+    "description": "Votre partenaire de confiance pour l'électronique connectée et les produits alimentaires locaux de qualité à Douala.",
+    "shop": "Boutique",
+    "company": "Entreprise",
+    "contact": "Contact",
+    "aboutUs": "À propos",
+    "allProducts": "Tous les produits",
+    "electronics": "Électronique",
+    "food": "Alimentation",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "address": "Douala, Cameroun",
+    "copyright": "Tous droits réservés."
+  },
+  "admin": {
+    "dashboard": "Tableau de bord",
+    "products": "Produits",
+    "orders": "Commandes",
+    "users": "Administrateurs",
+    "logout": "Déconnexion",
+    "welcome": "Bonjour",
+    "today": "Aujourd'hui"
+  }
+}

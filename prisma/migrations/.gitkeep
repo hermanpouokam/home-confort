@@ -1,0 +1,2 @@
+# Migrations générées automatiquement par `prisma migrate dev`
+# Exécuter `npx prisma migrate dev --name init` pour créer la première migration
