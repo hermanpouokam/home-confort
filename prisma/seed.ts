@@ -201,7 +201,7 @@ async function main() {
   // }
 
   // Admins
-  const superAdminPassword = await bcrypt.hash("Admin@2024!", 12);
+  const superAdminPassword = await bcrypt.hash("Tsaclau2026", 12);
 
 
   await prisma.admin.upsert({
@@ -233,46 +233,46 @@ async function main() {
   const modes = ["standard", "express", "relay"];
   const slots = ["morning", "afternoon", "evening"];
 
-  for (let i = 0; i < 15; i++) {
-    const customer = customers[i % customers.length];
-    const daysAgo = Math.floor(Math.random() * 30);
-    const createdAt = new Date();
-    createdAt.setDate(createdAt.getDate() - daysAgo);
+  // for (let i = 0; i < 15; i++) {
+  //   const customer = customers[i % customers.length];
+  //   const daysAgo = Math.floor(Math.random() * 30);
+  //   const createdAt = new Date();
+  //   createdAt.setDate(createdAt.getDate() - daysAgo);
 
-    const orderProducts = allProducts.slice(0, Math.floor(Math.random() * 3) + 1);
-    const orderNumber = `HC-${createdAt.getFullYear()}-${String(i + 1).padStart(5, "0")}`;
+  //   const orderProducts = allProducts.slice(0, Math.floor(Math.random() * 3) + 1);
+  //   const orderNumber = `HC-${createdAt.getFullYear()}-${String(i + 1).padStart(5, "0")}`;
 
-    let total = 0;
-    const items = orderProducts.map((p: typeof allProducts[0]) => {
-      const qty = Math.floor(Math.random() * 3) + 1;
-      total += Number(p.price) * qty;
-      return { productId: p.id, quantity: qty, unitPrice: p.price };
-    });
+  //   let total = 0;
+  //   const items = orderProducts.map((p: typeof allProducts[0]) => {
+  //     const qty = Math.floor(Math.random() * 3) + 1;
+  //     total += Number(p.price) * qty;
+  //     return { productId: p.id, quantity: qty, unitPrice: p.price };
+  //   });
 
-    await prisma.order.upsert({
-      where: { orderNumber },
-      update: {},
-      create: {
-        orderNumber,
-        status: statuses[i],
-        customer,
-        delivery: {
-          address: `${Math.floor(Math.random() * 999) + 1} Rue de la Paix`,
-          city: "Douala",
-          district: "Akwa",
-          zip: "237",
-          mode: modes[i % modes.length],
-          slot: slots[i % slots.length],
-          notes: i % 3 === 0 ? "Sonner deux fois" : null,
-        },
-        total,
-        createdAt,
-        items: {
-          create: items,
-        },
-      },
-    });
-  }
+  //   await prisma.order.upsert({
+  //     where: { orderNumber },
+  //     update: {},
+  //     create: {
+  //       orderNumber,
+  //       status: statuses[i],
+  //       customer,
+  //       delivery: {
+  //         address: `${Math.floor(Math.random() * 999) + 1} Rue de la Paix`,
+  //         city: "Douala",
+  //         district: "Akwa",
+  //         zip: "237",
+  //         mode: modes[i % modes.length],
+  //         slot: slots[i % slots.length],
+  //         notes: i % 3 === 0 ? "Sonner deux fois" : null,
+  //       },
+  //       total,
+  //       createdAt,
+  //       items: {
+  //         create: items,
+  //       },
+  //     },
+  //   });
+  // }
 
   console.log("✅ Seed completed!");
 }
