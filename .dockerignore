@@ -1,0 +1,13 @@
+.env
+.env.local
+.env.*.local
+node_modules
+.next
+.git
+.gitignore
+README.md
+*.log
+.DS_Store
+coverage
+.nyc_output
+*.tsbuildinfo

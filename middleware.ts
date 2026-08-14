@@ -20,8 +20,11 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next|_vercel|.*\\..*).*)",
-    "/",
-    "/(fr|en)/:path*",
+    // Match all paths except:
+    // - _next (Next.js internals)
+    // - _vercel (Vercel internals)
+    // - files with extensions (static files)
+    // - api routes (handled above)
+    "/((?!_next|_vercel|api|admin|.*\\..*).*)",
   ],
 };
