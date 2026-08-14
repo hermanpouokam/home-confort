@@ -6,3 +6,5 @@ node_modules/
 public/uploads/ 
 home-confort.zip  
 tsconfig.tsbuildinfo 
+.claude
+.next
