@@ -33,6 +33,7 @@ COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/bcryptjs ./node_modules/bcryptjs
 COPY --from=builder /app/node_modules/sharp ./node_modules/sharp
+COPY --from=builder /app/messages ./messages
 
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
