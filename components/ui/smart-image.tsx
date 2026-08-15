@@ -44,8 +44,11 @@ export default function SmartImage({ src, alt, fill, sizes, className, priority,
     );
   }
 
-  // Cas 2 : image locale /uploads/…
-  const isLocal = src.startsWith("/uploads/") || src.startsWith("/public/uploads/");
+  // Cas 2 : image locale (servie via la route API /api/uploads/…)
+  const isLocal =
+    src.startsWith("/uploads/") ||
+    src.startsWith("/public/uploads/") ||
+    src.startsWith("/api/uploads/");
   if (isLocal) {
     if (fill) {
       return (

@@ -31,7 +31,9 @@ export async function POST(req: NextRequest) {
   const bytes = await file.arrayBuffer();
   await writeFile(join(uploadDir, filename), Buffer.from(bytes));
 
-  // Retourner le chemin relatif (fonctionne en local et en prod car SmartImage gère /uploads/)
-  const url = `/uploads/${filename}`;
+  // Retourner le chemin via la route API dynamique (nécessaire en Next.js 16 standalone :
+  // le dossier /public statique n'est indexé qu'au démarrage du serveur, donc les fichiers
+  // ajoutés après coup ne seraient pas servis via /uploads/... directement)
+  const url = `/api/uploads/${filename}`;
   return NextResponse.json({ url });
 }
