@@ -67,7 +67,7 @@ export default function AdminSidebar({ session }: AdminSidebarProps) {
       {/* Footer */}
       <div className="px-3 py-4 border-t border-white/10 space-y-1">
         <Link
-          href="/fr"
+          href={`${process.env.NEXT_PUBLIC_SITE_URL ?? ""}/fr`}
           target="_blank"
           className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all"
         >
