@@ -1,9 +1,12 @@
+"use client";
+
 import { Star } from "lucide-react";
 import SmartImage, { isVideoUrl } from "@/components/ui/smart-image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { formatPrice, getLocalizedField, isPromoActive, getPromoPercent } from "@/lib/utils";
 import AddToCartButton from "./AddToCartButton";
+import { useTranslations } from "next-intl";
 
 interface ProductCardProps {
   product: {
@@ -22,6 +25,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, locale }: ProductCardProps) {
+  const t = useTranslations("product");
   const name = getLocalizedField(product.name, locale);
   const price = Number(product.price);
   const originalPrice = product.originalPrice ? Number(product.originalPrice) : null;
@@ -53,13 +57,13 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
             </span>
           )}
           {product.featured && !promoActive && (
-            <Badge className="flex items-center gap-1"><Star className="w-3 h-3 text-amber-400" /> Bestseller</Badge>
+            <Badge className="flex items-center gap-1"><Star className="w-3 h-3 text-amber-400" /> {t("bestseller")}</Badge>
           )}
         </div>
 
         {isOutOfStock && (
           <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
-            <Badge variant="secondary">Rupture de stock</Badge>
+            <Badge variant="secondary">{t("outOfStock")}</Badge>
           </div>
         )}
       </Link>
@@ -84,10 +88,10 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
               <p className="font-semibold text-[#111210]">{formatPrice(price)}</p>
             )}
             {isLowStock && (
-              <p className="text-xs text-amber-600 font-medium">Plus que {product.stock} en stock</p>
+              <p className="text-xs text-amber-600 font-medium">{t("lowStock", { count: product.stock })}</p>
             )}
             {!isLowStock && !isOutOfStock && (
-              <p className="text-xs text-emerald-600">En stock</p>
+              <p className="text-xs text-emerald-600">{t("inStock")}</p>
             )}
           </div>
           <AddToCartButton productId={product.id} disabled={isOutOfStock} />

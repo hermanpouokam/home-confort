@@ -4,6 +4,7 @@ import { useTransition } from "react";
 import { Plus, Minus, Trash2, Loader2 } from "lucide-react";
 import { updateCartItem, removeFromCart } from "@/actions/cart";
 import { trackEvent } from "@/lib/meta/pixel";
+import { useTranslations } from "next-intl";
 
 interface CartActionsProps {
   productId: string;
@@ -12,6 +13,7 @@ interface CartActionsProps {
 }
 
 export default function CartActions({ productId, quantity, stock }: CartActionsProps) {
+  const t = useTranslations("cart");
   const [isPending, startTransition] = useTransition();
 
   const handleUpdate = (newQty: number) => {
@@ -26,11 +28,8 @@ export default function CartActions({ productId, quantity, stock }: CartActionsP
       // ── Meta RemoveFromCart ─────────────────────────────────────────────
       trackEvent("RemoveFromCart", {
         content_ids: [productId],
-        content_name: productName,
         content_type: "product",
         currency: "XAF",
-        value: productPrice ? productPrice * quantity : undefined,
-        contents: [{ id: productId, quantity, item_price: productPrice }],
       });
     });
   };
@@ -65,7 +64,7 @@ export default function CartActions({ productId, quantity, stock }: CartActionsP
         className="flex items-center gap-1 text-xs text-[#9CA3AF] hover:text-red-500 transition-colors"
       >
         <Trash2 className="w-3 h-3" />
-        Supprimer
+        {t("remove")}
       </button>
     </div>
   );

@@ -13,10 +13,11 @@ export const metadata: Metadata = {
 };
 
 interface HomePageProps {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export default async function HomePage({ params: { locale } }: HomePageProps) {
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale } = await params;
   setRequestLocale(locale);
   return (
     <>

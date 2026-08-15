@@ -5,9 +5,9 @@ export default async function TrustBar() {
   const t = await getTranslations("trust");
 
   const items = [
-    { icon: Truck, label: t("delivery"), desc: "Douala en 24h" },
-    { icon: ShieldCheck, label: t("quality"), desc: "Produits sélectionnés" },
-    { icon: Headphones, label: t("support"), desc: "7j/7 de 8h à 20h" },
+    { icon: Truck, label: t("delivery"), desc: t("deliveryDesc") },
+    { icon: ShieldCheck, label: t("quality"), desc: t("qualityDesc") },
+    { icon: Headphones, label: t("support"), desc: t("supportDesc") },
   ];
 
   return (

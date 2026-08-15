@@ -4,6 +4,7 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Search, X } from "lucide-react";
 import { useTransition, useState, useCallback, useRef } from "react";
 import { trackEvent } from "@/lib/meta/pixel";
+import { useTranslations } from "next-intl";
 
 interface SearchBarProps {
   placeholder: string;
@@ -17,6 +18,7 @@ export default function SearchBar({ placeholder, defaultValue = "" }: SearchBarP
   const [isPending, startTransition] = useTransition();
   const [value, setValue] = useState(defaultValue);
   const lastTrackedRef = useRef<string>("");
+  const t = useTranslations("shop");
 
   const handleSearch = useCallback(
     (term: string) => {

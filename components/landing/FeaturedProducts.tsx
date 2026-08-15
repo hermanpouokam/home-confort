@@ -26,7 +26,7 @@ export default async function FeaturedProducts({ locale }: FeaturedProductsProps
           <h2 className="text-3xl font-semibold tracking-tight text-[#111210]">{t("subtitle")}</h2>
         </div>
         <Link href={`/${locale}/shop`} className="hidden sm:flex items-center gap-2 text-sm font-medium text-emerald-600 hover:text-emerald-700 transition-colors">
-          Voir tout <ArrowRight className="w-4 h-4" />
+          {t("viewAll")} <ArrowRight className="w-4 h-4" />
         </Link>
       </AnimatedSection>
 

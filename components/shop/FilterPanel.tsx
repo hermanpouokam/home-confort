@@ -3,6 +3,7 @@
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useTranslations } from "next-intl";
 
 interface Category {
   id: string;
@@ -27,6 +28,7 @@ export default function FilterPanel({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("shop");
 
   const updateParam = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -49,10 +51,10 @@ export default function FilterPanel({
         onValueChange={(val) => updateParam("category", val)}
       >
         <SelectTrigger className="w-48">
-          <SelectValue placeholder="Catégorie" />
+          <SelectValue placeholder={t("category")} />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">Toutes catégories</SelectItem>
+          <SelectItem value="all">{t("allCategories")}</SelectItem>
           {categories.map((cat) => (
             <SelectItem key={cat.id} value={cat.slug}>
               {cat.name[locale] ?? cat.name.fr}
@@ -67,13 +69,13 @@ export default function FilterPanel({
         onValueChange={(val) => updateParam("sort", val)}
       >
         <SelectTrigger className="w-48">
-          <SelectValue placeholder="Trier par" />
+          <SelectValue placeholder={t("sort")} />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="newest">Plus récents</SelectItem>
-          <SelectItem value="priceAsc">Prix croissant</SelectItem>
-          <SelectItem value="priceDesc">Prix décroissant</SelectItem>
-          <SelectItem value="featured">Bestsellers</SelectItem>
+          <SelectItem value="newest">{t("sortOptions.newest")}</SelectItem>
+          <SelectItem value="priceAsc">{t("sortOptions.priceAsc")}</SelectItem>
+          <SelectItem value="priceDesc">{t("sortOptions.priceDesc")}</SelectItem>
+          <SelectItem value="featured">{t("sortOptions.featured")}</SelectItem>
         </SelectContent>
       </Select>
     </div>

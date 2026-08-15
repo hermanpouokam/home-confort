@@ -12,23 +12,32 @@
     "title": "Confort & Technologie\npour votre quotidien",
     "subtitle": "Découvrez notre sélection d'appareils connectés et de produits alimentaires locaux de qualité.",
     "cta": "Découvrir la boutique",
-    "ctaSecondary": "Voir les offres"
+    "ctaSecondary": "Voir les offres",
+    "sectionLabel": "Électronique · Domotique · Alimentation",
+    "trustDelivery": "Livraison 24h",
+    "trustQuality": "Qualité garantie",
+    "trustSupport": "Support 7j/7"
   },
   "trust": {
     "delivery": "Livraison rapide",
     "quality": "Qualité garantie",
-    "support": "Support réactif"
+    "support": "Support réactif",
+    "deliveryDesc": "Douala en 24h",
+    "qualityDesc": "Produits sélectionnés",
+    "supportDesc": "7j/7 de 8h à 20h"
   },
   "categories": {
     "title": "Nos catégories",
     "electronics": "Électronique & Domotique",
     "food": "Alimentation",
     "products": "produits",
-    "discover": "Découvrir"
+    "discover": "Découvrir",
+    "subtitle": "Trouvez ce qu'il vous faut"
   },
   "featured": {
     "title": "Nos bestsellers",
-    "subtitle": "Les produits les plus appréciés par nos clients"
+    "subtitle": "Les produits les plus appréciés par nos clients",
+    "viewAll": "Voir tout"
   },
   "reassurance": {
     "title": "Pourquoi choisir Vitalis Home and Wellness ?",
@@ -39,7 +48,8 @@
     "support": "Service client",
     "supportDesc": "Disponible 7j/7 de 8h à 20h",
     "payment": "Paiement sécurisé",
-    "paymentDesc": "Mobile Money & Espèces"
+    "paymentDesc": "Mobile Money & Espèces",
+    "sectionLabel": "Nos engagements"
   },
   "product": {
     "addToCart": "Ajouter au panier",
@@ -49,7 +59,13 @@
     "quantity": "Quantité",
     "similarProducts": "Produits similaires",
     "backToShop": "Retour à la boutique",
-    "addedToCart": "Ajouté au panier"
+    "addedToCart": "Ajouté au panier",
+    "bestseller": "Bestseller",
+    "promoEnds": "Offre valable jusqu'au {date}",
+    "delivery24h": "Livraison 24h",
+    "securePayment": "Paiement sécurisé",
+    "qualityGuaranteed": "Qualité garantie",
+    "support7j7": "Support 7j/7"
   },
   "shop": {
     "title": "Boutique",
@@ -68,7 +84,8 @@
     "priceRange": "Fourchette de prix",
     "category": "Catégorie",
     "allCategories": "Toutes catégories",
-    "loadMore": "Charger plus"
+    "loadMore": "Charger plus",
+    "tryModifyFilters": "Essayez de modifier vos filtres de recherche."
   },
   "cart": {
     "title": "Mon panier",
@@ -81,13 +98,21 @@
     "checkout": "Passer la commande",
     "continueShopping": "Continuer les achats",
     "remove": "Supprimer",
-    "items": "{count} article(s)"
+    "items": "{count} article(s)",
+    "viewCart": "Voir le panier",
+    "freeShippingThreshold": "Plus que {amount} pour la livraison gratuite"
   },
   "checkout": {
     "title": "Finaliser ma commande",
     "step1": "Informations",
     "step2": "Livraison",
     "step3": "Confirmation",
+    "steps": {
+      "step1": "Informations",
+      "step2": "Livraison",
+      "step3": "Confirmation"
+    },
+    "yourInfo": "Vos informations",
     "firstName": "Prénom",
     "lastName": "Nom",
     "email": "Email",
@@ -110,9 +135,18 @@
     "next": "Suivant",
     "back": "Retour",
     "orderSummary": "Récapitulatif",
-    "free": "Gratuite",
+    "free": "Gratuit",
     "standardPrice": "1 500 FCFA",
-    "expressPrice": "3 000 FCFA"
+    "expressPrice": "3 000 FCFA",
+    "standardDesc": "2-3 jours ouvrés",
+    "expressDesc": "Sous 24h",
+    "relayDesc": "Gratuit, retrait en boutique",
+    "customerInfo": "Client",
+    "deliveryInfo": "Livraison",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "total": "Total",
+    "processing": "Traitement..."
   },
   "orderSuccess": {
     "title": "Commande confirmée !",
@@ -120,7 +154,12 @@
     "message": "Votre commande a bien été enregistrée. Vous recevrez une confirmation par SMS. Notre équipe vous contactera pour confirmer la livraison.",
     "orderNumber": "Numéro de commande",
     "backToHome": "Retour à l'accueil",
-    "continueShopping": "Continuer les achats"
+    "continueShopping": "Continuer mes achats",
+    "nextStepsTitle": "Prochaines étapes",
+    "step1": "Notre équipe confirme votre commande",
+    "step2": "Vous recevez un SMS de confirmation",
+    "step3": "Livraison dans le créneau choisi",
+    "keepNumber": "Conservez ce numéro pour suivre votre commande"
   },
   "footer": {
     "description": "Votre partenaire de confiance pour l'électronique connectée et les produits alimentaires locaux de qualité à Douala.",
@@ -134,7 +173,8 @@
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation",
     "address": "Douala, Cameroun",
-    "copyright": "Tous droits réservés."
+    "copyright": "Tous droits réservés.",
+    "madeInCameroon": "Made in Cameroun"
   },
   "admin": {
     "dashboard": "Tableau de bord",
@@ -144,5 +184,24 @@
     "logout": "Déconnexion",
     "welcome": "Bonjour",
     "today": "Aujourd'hui"
+  },
+  "cartDrawer": {
+    "title": "Mon panier",
+    "empty": "Votre panier est vide",
+    "emptyDesc": "Découvrez nos produits et ajoutez-les à votre panier.",
+    "itemsCount": "{count} article{plural} dans votre panier",
+    "viewCart": "Voir le panier",
+    "continueShopping": "Continuer les achats",
+    "close": "Fermer"
+  },
+  "promoBanner": {
+    "dismiss": "Fermer"
+  },
+  "status": {
+    "PENDING": "En attente",
+    "CONFIRMED": "Confirmée",
+    "SHIPPED": "Expédiée",
+    "DELIVERED": "Livrée",
+    "CANCELLED": "Annulée"
   }
 }

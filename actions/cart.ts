@@ -25,7 +25,7 @@ export async function addToCart(productId: string, quantity: number = 1) {
     return { error: "Données invalides" };
   }
 
-  const items = getCartFromCookie();
+  const items = await getCartFromCookie();
   const existing = items.find((item) => item.productId === productId);
 
   if (existing) {
@@ -34,7 +34,7 @@ export async function addToCart(productId: string, quantity: number = 1) {
     items.push({ productId, quantity });
   }
 
-  cookies().set(CART_COOKIE, serializeCart(items), COOKIE_OPTIONS);
+  (await cookies()).set(CART_COOKIE, serializeCart(items), COOKIE_OPTIONS);
   revalidatePath("/", "layout");
 
   return { success: true };
@@ -49,7 +49,7 @@ export async function updateCartItem(productId: string, quantity: number) {
     return { error: "Données invalides" };
   }
 
-  let items = getCartFromCookie();
+  let items = await getCartFromCookie();
 
   if (quantity === 0) {
     items = items.filter((item) => item.productId !== productId);
@@ -60,28 +60,28 @@ export async function updateCartItem(productId: string, quantity: number) {
     }
   }
 
-  cookies().set(CART_COOKIE, serializeCart(items), COOKIE_OPTIONS);
+  (await cookies()).set(CART_COOKIE, serializeCart(items), COOKIE_OPTIONS);
   revalidatePath("/cart");
 
   return { success: true };
 }
 
 export async function removeFromCart(productId: string) {
-  const items = getCartFromCookie();
+  const items = await getCartFromCookie();
   const filtered = items.filter((item) => item.productId !== productId);
 
-  cookies().set(CART_COOKIE, serializeCart(filtered), COOKIE_OPTIONS);
+  (await cookies()).set(CART_COOKIE, serializeCart(filtered), COOKIE_OPTIONS);
   revalidatePath("/cart");
 
   return { success: true };
 }
 
 export async function clearCart() {
-  cookies().delete(CART_COOKIE);
+  (await cookies()).delete(CART_COOKIE);
   revalidatePath("/", "layout");
 }
 
 export async function getCartCount(): Promise<number> {
-  const items = getCartFromCookie();
+  const items = await getCartFromCookie();
   return items.reduce((acc: number, item: CartItem) => acc + item.quantity, 0);
 }

@@ -5,6 +5,7 @@ import { ShoppingCart, Check, Loader2 } from "lucide-react";
 import { addToCart } from "@/actions/cart";
 import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/meta/pixel";
+import { useTranslations } from "next-intl";
 
 interface AddToCartButtonProps {
   productId: string;
@@ -25,6 +26,7 @@ export default function AddToCartButton({
   className,
   label,
 }: AddToCartButtonProps) {
+  const t = useTranslations("product");
   const [isPending, startTransition] = useTransition();
   const [added, setAdded] = useState(false);
 
@@ -64,7 +66,7 @@ export default function AddToCartButton({
         ) : added ? (
           <>
             <Check className="w-4 h-4" />
-            Ajouté !
+            {t("addedToCart")}
           </>
         ) : (
           <>
@@ -89,7 +91,7 @@ export default function AddToCartButton({
             : "bg-emerald-50 text-emerald-600 hover:bg-emerald-400 hover:text-white active:scale-95",
         className
       )}
-      aria-label="Ajouter au panier"
+      aria-label={t("addToCart")}
     >
       {isPending ? (
         <Loader2 className="w-4 h-4 animate-spin" />

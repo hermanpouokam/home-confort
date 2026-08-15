@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { formatPrice } from "@/lib/utils";
 import { trackEvent } from "@/lib/meta/pixel";
+import { useTranslations } from "next-intl";
 
 interface CartItem {
   productId: string;
@@ -27,26 +28,27 @@ interface CheckoutStepperProps {
 }
 
 const steps = [
-  { id: 1, label: "Informations" },
-  { id: 2, label: "Livraison" },
-  { id: 3, label: "Confirmation" },
+  { id: 1, label: "steps.step1" },
+  { id: 2, label: "steps.step2" },
+  { id: 3, label: "steps.step3" },
 ];
 
 const deliveryModes = [
-  { id: "standard", label: "Livraison standard", desc: "2-3 jours ouvrés", price: 1500 },
-  { id: "express", label: "Livraison express", desc: "Sous 24h", price: 3000 },
-  { id: "relay", label: "Point relais", desc: "Gratuit, retrait en boutique", price: 0 },
+  { id: "standard", label: "standard", desc: "standardDesc", price: 1500 },
+  { id: "express", label: "express", desc: "expressDesc", price: 3000 },
+  { id: "relay", label: "relay", desc: "relayDesc", price: 0 },
 ];
 
 const slots = [
-  { id: "morning", label: "Matin (8h – 12h)" },
-  { id: "afternoon", label: "Après-midi (12h – 17h)" },
-  { id: "evening", label: "Soir (17h – 20h)" },
+  { id: "morning", label: "morning" },
+  { id: "afternoon", label: "afternoon" },
+  { id: "evening", label: "evening" },
 ];
 
 const initialState: OrderFormState = {};
 
 export default function CheckoutStepper({ cartItems, total, locale }: CheckoutStepperProps) {
+  const t = useTranslations("checkout");
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({
     firstName: "",
@@ -117,7 +119,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
               className={`ml-2 text-sm font-medium hidden sm:block ${step === s.id ? "text-[#111210]" : "text-[#9CA3AF]"
                 }`}
             >
-              {s.label}
+              {t(s.label as "steps.step1")}
             </span>
             {i < steps.length - 1 && (
               <div className={`flex-1 h-px mx-4 ${step > s.id ? "bg-emerald-400" : "bg-[#E8E8E3]"}`} />
@@ -143,15 +145,15 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
         {/* Step 1 — Personal info */}
         {step === 1 && (
           <div className="bg-white rounded-2xl border border-[#E8E8E3] p-6">
-            <h2 className="font-semibold text-lg text-[#111210] mb-6">Vos informations</h2>
+            <h2 className="font-semibold text-lg text-[#111210] mb-6">{t("yourInfo")}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label htmlFor="firstName">Prénom *</Label>
+                <Label htmlFor="firstName">{t("firstName")} *</Label>
                 <Input
                   id="firstName"
                   value={form.firstName}
                   onChange={(e) => updateField("firstName", e.target.value)}
-                  placeholder="Jean"
+                  placeholder={t("firstName")}
                   required
                 />
                 {state.errors?.firstName && (
@@ -159,17 +161,17 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
                 )}
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="lastName">Nom *</Label>
+                <Label htmlFor="lastName">{t("lastName")} *</Label>
                 <Input
                   id="lastName"
                   value={form.lastName}
                   onChange={(e) => updateField("lastName", e.target.value)}
-                  placeholder="Dupont"
+                  placeholder={t("lastName")}
                   required
                 />
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="email">Email *</Label>
+                <Label htmlFor="email">{t("email")} *</Label>
                 <Input
                   id="email"
                   type="email"
@@ -183,7 +185,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
                 )}
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="phone">Téléphone *</Label>
+                <Label htmlFor="phone">{t("phone")} *</Label>
                 <Input
                   id="phone"
                   type="tel"
@@ -204,7 +206,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
                 disabled={!validateStep1()}
                 className="btn-primary"
               >
-                Suivant
+                {t("next")}
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
@@ -214,12 +216,12 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
         {/* Step 2 — Delivery */}
         {step === 2 && (
           <div className="bg-white rounded-2xl border border-[#E8E8E3] p-6 space-y-6">
-            <h2 className="font-semibold text-lg text-[#111210]">Livraison</h2>
+            <h2 className="font-semibold text-lg text-[#111210]">{t("step2")}</h2>
 
             {/* Address */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="sm:col-span-2 space-y-1.5">
-                <Label>Adresse *</Label>
+                <Label>{t("address")} *</Label>
                 <Input
                   value={form.address}
                   onChange={(e) => updateField("address", e.target.value)}
@@ -228,7 +230,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
                 />
               </div>
               <div className="space-y-1.5">
-                <Label>Ville *</Label>
+                <Label>{t("city")} *</Label>
                 <Input
                   value={form.city}
                   onChange={(e) => updateField("city", e.target.value)}
@@ -237,7 +239,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
                 />
               </div>
               <div className="space-y-1.5">
-                <Label>Quartier *</Label>
+                <Label>{t("district")} *</Label>
                 <Input
                   value={form.district}
                   onChange={(e) => updateField("district", e.target.value)}
@@ -249,7 +251,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
 
             {/* Delivery mode */}
             <div className="space-y-3">
-              <Label>Mode de livraison</Label>
+              <Label>{t("deliveryMode")}</Label>
               <div className="grid gap-3">
                 {deliveryModes.map((mode) => (
                   <label
@@ -271,12 +273,12 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
                         )}
                       </div>
                       <div>
-                        <p className="font-medium text-sm text-[#111210]">{mode.label}</p>
-                        <p className="text-xs text-[#9CA3AF]">{mode.desc}</p>
+                        <p className="font-medium text-sm text-[#111210]">{t(mode.label as "standard")}</p>
+                        <p className="text-xs text-[#9CA3AF]">{t(mode.desc as "standardDesc")}</p>
                       </div>
                     </div>
                     <span className="font-semibold text-sm text-[#111210]">
-                      {mode.price === 0 ? "Gratuit" : formatPrice(mode.price)}
+                      {mode.price === 0 ? t("free") : formatPrice(mode.price)}
                     </span>
                     <input
                       type="radio"
@@ -293,7 +295,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
 
             {/* Slot */}
             <div className="space-y-3">
-              <Label>Créneau préféré</Label>
+              <Label>{t("deliverySlot")}</Label>
               <div className="flex flex-wrap gap-3">
                 {slots.map((slot) => (
                   <button
@@ -305,7 +307,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
                         : "border-[#E8E8E3] text-[#6B7280] hover:border-emerald-200"
                       }`}
                   >
-                    {slot.label}
+                    {t(slot.label as "morning")}
                   </button>
                 ))}
               </div>
@@ -313,18 +315,18 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
 
             {/* Notes */}
             <div className="space-y-1.5">
-              <Label>Instructions spéciales (optionnel)</Label>
+              <Label>{t("notes")}</Label>
               <Textarea
                 value={form.notes}
                 onChange={(e) => updateField("notes", e.target.value)}
-                placeholder="Sonnez deux fois, code portail..."
+                placeholder={t("notesPlaceholder")}
                 rows={2}
               />
             </div>
 
             <div className="flex justify-between pt-2">
               <button type="button" onClick={() => setStep(1)} className="btn-secondary">
-                Retour
+                {t("back")}
               </button>
               <button
                 type="button"
@@ -332,7 +334,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
                 disabled={!validateStep2()}
                 className="btn-primary"
               >
-                Suivant
+                {t("next")}
                 <ChevronRight className="w-4 h-4" />
               </button>
             </div>
@@ -343,17 +345,17 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
         {step === 3 && (
           <div className="space-y-4">
             <div className="bg-white rounded-2xl border border-[#E8E8E3] p-6">
-              <h2 className="font-semibold text-lg text-[#111210] mb-4">Récapitulatif</h2>
+              <h2 className="font-semibold text-lg text-[#111210] mb-4">{t("orderSummary")}</h2>
 
               {/* Customer info */}
               <div className="grid grid-cols-2 gap-3 text-sm mb-6 pb-6 border-b border-[#E8E8E3]">
                 <div>
-                  <p className="text-[#9CA3AF] text-xs uppercase tracking-wider mb-1">Client</p>
+                  <p className="text-[#9CA3AF] text-xs uppercase tracking-wider mb-1">{t("customerInfo")}</p>
                   <p className="font-medium">{form.firstName} {form.lastName}</p>
                   <p className="text-[#6B7280]">{form.phone}</p>
                 </div>
                 <div>
-                  <p className="text-[#9CA3AF] text-xs uppercase tracking-wider mb-1">Livraison</p>
+                  <p className="text-[#9CA3AF] text-xs uppercase tracking-wider mb-1">{t("deliveryInfo")}</p>
                   <p className="font-medium">{form.address}</p>
                   <p className="text-[#6B7280]">{form.district}, {form.city}</p>
                 </div>
@@ -377,15 +379,15 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
               {/* Totals */}
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-[#6B7280]">Sous-total</span>
+                  <span className="text-[#6B7280]">{t("subtotal")}</span>
                   <span>{formatPrice(total)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#6B7280]">Livraison ({deliveryModes.find(m => m.id === form.deliveryMode)?.label})</span>
-                  <span>{shippingCost === 0 ? "Gratuit" : formatPrice(shippingCost)}</span>
+                  <span className="text-[#6B7280]">{t("shipping")} ({t(deliveryModes.find(m => m.id === form.deliveryMode)?.label as "standard")})</span>
+                  <span>{shippingCost === 0 ? t("free") : formatPrice(shippingCost)}</span>
                 </div>
                 <div className="flex justify-between font-semibold text-base pt-2 border-t border-[#E8E8E3]">
-                  <span>Total</span>
+                  <span>{t("total")}</span>
                   <span>{formatPrice(grandTotal)}</span>
                 </div>
               </div>
@@ -399,7 +401,7 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
 
             <div className="flex justify-between">
               <button type="button" onClick={() => setStep(2)} className="btn-secondary">
-                Retour
+                {t("back")}
               </button>
               <button
                 type="submit"
@@ -409,12 +411,12 @@ export default function CheckoutStepper({ cartItems, total, locale }: CheckoutSt
                 {isPending ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Traitement...
+                    {t("processing")}
                   </>
                 ) : (
                   <>
                     <Check className="w-4 h-4" />
-                    Confirmer ma commande
+                    {t("confirm")}
                   </>
                 )}
               </button>

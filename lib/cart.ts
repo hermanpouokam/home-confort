@@ -21,8 +21,8 @@ export interface CartItemWithProduct extends CartItem {
   };
 }
 
-export function getCartFromCookie(): CartItem[] {
-  const cookieStore = cookies();
+export async function getCartFromCookie(): Promise<CartItem[]> {
+  const cookieStore = await cookies();
   const raw = cookieStore.get(CART_COOKIE)?.value;
   if (!raw) return [];
   try {
@@ -46,7 +46,7 @@ export function serializeCart(items: CartItem[]): string {
 }
 
 export async function getHydratedCart(locale: string = "fr"): Promise<CartItemWithProduct[]> {
-  const cartItems = getCartFromCookie();
+  const cartItems = await getCartFromCookie();
   if (cartItems.length === 0) return [];
 
   const productIds = cartItems.map((item) => item.productId);

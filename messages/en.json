@@ -12,23 +12,32 @@
     "title": "Comfort & Technology\nfor your everyday life",
     "subtitle": "Discover our selection of smart devices and quality local food products.",
     "cta": "Explore the shop",
-    "ctaSecondary": "See deals"
+    "ctaSecondary": "See deals",
+    "sectionLabel": "Electronics · Smart Home · Food",
+    "trustDelivery": "24h delivery",
+    "trustQuality": "Guaranteed quality",
+    "trustSupport": "Support 7j/7"
   },
   "trust": {
     "delivery": "Fast delivery",
     "quality": "Guaranteed quality",
-    "support": "Responsive support"
+    "support": "Responsive support",
+    "deliveryDesc": "Anywhere in Douala within 24h",
+    "qualityDesc": "Curated products",
+    "supportDesc": "Available 7 days a week, 8am to 8pm"
   },
   "categories": {
     "title": "Our categories",
     "electronics": "Electronics & Smart Home",
     "food": "Food & Grocery",
     "products": "products",
-    "discover": "Discover"
+    "discover": "Discover",
+    "subtitle": "Find what you need"
   },
   "featured": {
     "title": "Our bestsellers",
-    "subtitle": "The most loved products by our customers"
+    "subtitle": "The most loved products by our customers",
+    "viewAll": "View all"
   },
   "reassurance": {
     "title": "Why choose Vitalis Home and Wellness?",
@@ -39,7 +48,8 @@
     "support": "Customer service",
     "supportDesc": "Available 7 days a week, 8am to 8pm",
     "payment": "Secure payment",
-    "paymentDesc": "Mobile Money & Cash"
+    "paymentDesc": "Mobile Money & Cash",
+    "sectionLabel": "Our commitments"
   },
   "product": {
     "addToCart": "Add to cart",
@@ -49,7 +59,13 @@
     "quantity": "Quantity",
     "similarProducts": "Similar products",
     "backToShop": "Back to shop",
-    "addedToCart": "Added to cart"
+    "addedToCart": "Added to cart",
+    "bestseller": "Bestseller",
+    "promoEnds": "Offer valid until {date}",
+    "delivery24h": "24h delivery",
+    "securePayment": "Secure payment",
+    "qualityGuaranteed": "Quality guaranteed",
+    "support7j7": "Support 7/7"
   },
   "shop": {
     "title": "Shop",
@@ -68,7 +84,8 @@
     "priceRange": "Price range",
     "category": "Category",
     "allCategories": "All categories",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "tryModifyFilters": "Try modifying your search filters."
   },
   "cart": {
     "title": "My cart",
@@ -81,13 +98,21 @@
     "checkout": "Proceed to checkout",
     "continueShopping": "Continue shopping",
     "remove": "Remove",
-    "items": "{count} item(s)"
+    "items": "{count} item(s)",
+    "viewCart": "View cart",
+    "freeShippingThreshold": "Add {amount} more for free shipping"
   },
   "checkout": {
     "title": "Complete my order",
     "step1": "Information",
     "step2": "Delivery",
     "step3": "Confirmation",
+    "steps": {
+      "step1": "Information",
+      "step2": "Delivery",
+      "step3": "Confirmation"
+    },
+    "yourInfo": "Your information",
     "firstName": "First name",
     "lastName": "Last name",
     "email": "Email",
@@ -112,7 +137,16 @@
     "orderSummary": "Order summary",
     "free": "Free",
     "standardPrice": "1,500 FCFA",
-    "expressPrice": "3,000 FCFA"
+    "expressPrice": "3,000 FCFA",
+    "standardDesc": "2-3 business days",
+    "expressDesc": "Within 24h",
+    "relayDesc": "Free, pickup in store",
+    "customerInfo": "Customer",
+    "deliveryInfo": "Delivery",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "processing": "Processing..."
   },
   "orderSuccess": {
     "title": "Order confirmed!",
@@ -120,7 +154,12 @@
     "message": "Your order has been registered. You will receive a confirmation by SMS. Our team will contact you to confirm delivery.",
     "orderNumber": "Order number",
     "backToHome": "Back to home",
-    "continueShopping": "Continue shopping"
+    "continueShopping": "Continue shopping",
+    "nextStepsTitle": "Next steps",
+    "step1": "Our team confirms your order",
+    "step2": "You receive a confirmation SMS",
+    "step3": "Delivery in your chosen slot",
+    "keepNumber": "Keep this number to track your order"
   },
   "footer": {
     "description": "Your trusted partner for connected electronics and quality local food products in Douala.",
@@ -134,7 +173,8 @@
     "privacy": "Privacy policy",
     "terms": "Terms of use",
     "address": "Douala, Cameroon",
-    "copyright": "All rights reserved."
+    "copyright": "All rights reserved.",
+    "madeInCameroon": "Made in Cameroon"
   },
   "admin": {
     "dashboard": "Dashboard",
@@ -144,5 +184,24 @@
     "logout": "Logout",
     "welcome": "Hello",
     "today": "Today"
+  },
+  "cartDrawer": {
+    "title": "My cart",
+    "empty": "Your cart is empty",
+    "emptyDesc": "Browse our products and add them to your cart.",
+    "itemsCount": "{count} item{plural} in your cart",
+    "viewCart": "View cart",
+    "continueShopping": "Continue shopping",
+    "close": "Close"
+  },
+  "promoBanner": {
+    "dismiss": "Close"
+  },
+  "status": {
+    "PENDING": "Pending",
+    "CONFIRMED": "Confirmed",
+    "SHIPPED": "Shipped",
+    "DELIVERED": "Delivered",
+    "CANCELLED": "Cancelled"
   }
 }

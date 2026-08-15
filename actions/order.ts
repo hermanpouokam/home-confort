@@ -127,7 +127,7 @@ export async function placeOrder(
       }
     });
 
-    cookies().delete(CART_COOKIE);
+    (await cookies()).delete(CART_COOKIE);
 
     // Données communes aux deux mails
     const mailPayload = {
@@ -168,14 +168,14 @@ export async function placeOrder(
   // ── Purchase via Conversions API ─────────────────────────────────────────
   // Exécuté après la création réussie de la commande
   try {
-    const hdrs = headers();
+    const hdrs = await headers();
     const ip =
       hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ??
       hdrs.get("x-real-ip") ??
       undefined;
     const userAgent = hdrs.get("user-agent") ?? undefined;
-    const fbc = cookies().get("_fbc")?.value;
-    const fbp = cookies().get("_fbp")?.value;
+    const fbc = (await cookies()).get("_fbc")?.value;
+    const fbp = (await cookies()).get("_fbp")?.value;
 
     const eventId = generateEventId();
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";

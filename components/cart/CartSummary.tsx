@@ -1,8 +1,11 @@
+"use client";
+
 import SmartImage, { isVideoUrl } from "@/components/ui/smart-image";
 import Link from "next/link";
 import { formatPrice, getLocalizedField, isPromoActive } from "@/lib/utils";
 import type { CartItemWithProduct } from "@/lib/cart";
 import CartActions from "./CartActions";
+import { useTranslations } from "next-intl";
 
 interface CartSummaryProps {
   items: CartItemWithProduct[];
@@ -11,6 +14,7 @@ interface CartSummaryProps {
 }
 
 export default function CartSummary({ items, locale, total }: CartSummaryProps) {
+  const t = useTranslations("cart");
   const shippingFree = total >= 50000;
   const shippingCost = shippingFree ? 0 : 1500;
 
@@ -62,26 +66,26 @@ export default function CartSummary({ items, locale, total }: CartSummaryProps) 
 
       {/* Order summary */}
       <div className="bg-white rounded-2xl border border-[#E8E8E3] p-6">
-        <h2 className="font-semibold text-[#111210] mb-4">Récapitulatif</h2>
+        <h2 className="font-semibold text-[#111210] mb-4">{t("subtotal").replace("Sous-total", "Récapitulatif")}</h2>
 
         <div className="space-y-3 text-sm">
           <div className="flex justify-between">
-            <span className="text-[#6B7280]">Sous-total</span>
+            <span className="text-[#6B7280]">{t("subtotal")}</span>
             <span className="font-medium">{formatPrice(total)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#6B7280]">Livraison</span>
+            <span className="text-[#6B7280]">{t("shipping")}</span>
             <span className={shippingFree ? "text-emerald-600 font-medium" : "font-medium"}>
-              {shippingFree ? "Gratuite" : formatPrice(shippingCost)}
+              {shippingFree ? t("shippingFree") : formatPrice(shippingCost)}
             </span>
           </div>
           {!shippingFree && (
             <p className="text-xs text-[#9CA3AF]">
-              Plus que {formatPrice(50000 - total)} pour la livraison gratuite
+              {t("freeShippingThreshold", { amount: formatPrice(50000 - total) })}
             </p>
           )}
           <div className="border-t border-[#E8E8E3] pt-3 flex justify-between font-semibold text-base">
-            <span>Total</span>
+            <span>{t("total")}</span>
             <span>{formatPrice(total + shippingCost)}</span>
           </div>
         </div>
@@ -90,13 +94,13 @@ export default function CartSummary({ items, locale, total }: CartSummaryProps) 
           href={`/${locale}/checkout`}
           className="btn-primary justify-center mt-6 w-full text-base py-3"
         >
-          Passer la commande
+          {t("checkout")}
         </Link>
         <Link
           href={`/${locale}/shop`}
           className="btn-ghost justify-center mt-3 w-full"
         >
-          Continuer les achats
+          {t("continueShopping")}
         </Link>
       </div>
     </div>

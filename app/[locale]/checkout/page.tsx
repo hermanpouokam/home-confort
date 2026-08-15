@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { getHydratedCart, getCartTotal } from "@/lib/cart";
 import CheckoutStepper from "@/components/checkout/CheckoutStepper";
 import { sendCapiEvent, buildHashedUserData } from "@/lib/meta/server";
@@ -11,11 +12,13 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Finaliser ma commande" };
 
 interface CheckoutPageProps {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
-export default async function CheckoutPage({ params: { locale } }: CheckoutPageProps) {
+export default async function CheckoutPage({ params }: CheckoutPageProps) {
+  const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("checkout");
   const items = await getHydratedCart(locale);
 
   if (items.length === 0) {
@@ -36,7 +39,7 @@ export default async function CheckoutPage({ params: { locale } }: CheckoutPageP
 
   // ── InitiateCheckout via Conversions API (serveur) ──────────────────────
   const eventId = generateEventId();
-  const hdrs = headers();
+  const hdrs = await headers();
   const ip =
     hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     hdrs.get("x-real-ip") ??
@@ -71,7 +74,7 @@ export default async function CheckoutPage({ params: { locale } }: CheckoutPageP
         contentIds={items.map((i) => i.productId)}
       />
       <h1 className="text-3xl font-semibold tracking-tight text-[#111210] mb-10 text-center">
-        Finaliser ma commande
+        {t("title")}
       </h1>
       <CheckoutStepper cartItems={cartForClient} total={total} locale={locale} />
     </div>

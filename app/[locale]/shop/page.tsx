@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
 import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import ProductGrid from "@/components/shop/ProductGrid";
 import SearchBar from "@/components/shop/SearchBar";
@@ -10,15 +11,17 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Boutique" };
 
 interface ShopPageProps {
-  params: { locale: string };
-  searchParams: { q?: string; category?: string; sort?: string; cursor?: string };
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ q?: string; category?: string; sort?: string; cursor?: string }>;
 }
 
 const PAGE_SIZE = 12;
 
-export default async function ShopPage({ params: { locale }, searchParams }: ShopPageProps) {
+export default async function ShopPage({ params, searchParams: searchParamsPromise }: ShopPageProps) {
+  const { locale } = await params;
   setRequestLocale(locale);
-  const { q, category, sort = "newest", cursor } = searchParams;
+  const t = await getTranslations("shop");
+  const { q, category, sort = "newest", cursor } = await searchParamsPromise;
 
   const orderBy =
     sort === "priceAsc" ? { price: "asc" as const }
@@ -66,13 +69,13 @@ export default async function ShopPage({ params: { locale }, searchParams }: Sho
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight text-[#111210] mb-2">Boutique</h1>
-        <p className="text-sm text-[#6B7280]">{total} produit{total !== 1 ? "s" : ""} disponible{total !== 1 ? "s" : ""}</p>
+        <h1 className="text-3xl font-semibold tracking-tight text-[#111210] mb-2">{t("title")}</h1>
+        <p className="text-sm text-[#6B7280]">{total} {t("results", { count: total })}</p>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-8">
         <div className="flex-1">
-          <Suspense><SearchBar placeholder="Rechercher un produit..." defaultValue={q} /></Suspense>
+          <Suspense><SearchBar placeholder={t("search")} defaultValue={q} /></Suspense>
         </div>
         <Suspense>
           <FilterPanel categories={categoriesWithNames} locale={locale} currentCategory={category} currentSort={sort} />
@@ -84,7 +87,7 @@ export default async function ShopPage({ params: { locale }, searchParams }: Sho
       {hasMore && nextCursor && (
         <div className="mt-10 text-center">
           <a href={`?${new URLSearchParams({ ...(q ? { q } : {}), ...(category ? { category } : {}), sort, cursor: nextCursor }).toString()}`} className="btn-ghost inline-flex">
-            Charger plus de produits
+            {t("loadMore")}
           </a>
         </div>
       )}

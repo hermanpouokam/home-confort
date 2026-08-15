@@ -19,7 +19,7 @@ export default async function Hero({ locale }: HeroProps) {
           <div className="lg:col-span-3">
             <AnimatedSection delay={0}>
               <span className="section-label mb-4 block">
-                Électronique · Domotique · Alimentation
+                {t("sectionLabel")}
               </span>
             </AnimatedSection>
 
@@ -54,19 +54,19 @@ export default async function Hero({ locale }: HeroProps) {
                   <span className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
                     <Check className="w-3.5 h-3.5" />
                   </span>
-                  Livraison 24h
+                  {t("trustDelivery")}
                 </div>
                 <div className="flex items-center gap-2 text-sm text-[#6B7280]">
                   <span className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
                     <Check className="w-3.5 h-3.5" />
                   </span>
-                  Qualité garantie
+                  {t("trustQuality")}
                 </div>
                 <div className="flex items-center gap-2 text-sm text-[#6B7280]">
                   <span className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600">
                     <Check className="w-3.5 h-3.5" />
                   </span>
-                  Support 7j/7
+                  {t("trustSupport")}
                 </div>
               </div>
             </AnimatedSection>
@@ -79,7 +79,7 @@ export default async function Hero({ locale }: HeroProps) {
               <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl border border-[#E8E8E3]">
                 <Image
                   src={heroImg.src}
-                  alt="Vitalis Home and Wellness - Électronique et Domotique"
+                  alt={t("title")}
                   width={600}
                   height={700}
                   className="w-full h-full object-cover"

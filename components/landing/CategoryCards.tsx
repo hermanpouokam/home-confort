@@ -33,7 +33,7 @@ export default async function CategoryCards({ locale }: CategoryCardsProps) {
         <div className="flex items-end justify-between">
           <div>
             <span className="section-label block mb-2">{t("title")}</span>
-            <h2 className="text-3xl font-semibold tracking-tight text-[#111210]">Trouvez ce qu'il vous faut</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-[#111210]">{t("subtitle")}</h2>
           </div>
         </div>
       </AnimatedSection>

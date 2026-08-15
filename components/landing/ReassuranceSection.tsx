@@ -16,7 +16,7 @@ export default async function ReassuranceSection() {
     <section className="bg-[#F4F4F1] py-16 mt-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-12">
-          <span className="section-label block mb-2">Nos engagements</span>
+          <span className="section-label block mb-2">{t("sectionLabel")}</span>
           <h2 className="text-3xl font-semibold tracking-tight text-[#111210]">
             {t("title")}
           </h2>

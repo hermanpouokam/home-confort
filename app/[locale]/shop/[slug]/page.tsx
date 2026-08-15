@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import { ChevronRight, Star, Clock, Check, Truck, Lock, CheckCircle, Headphones } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
 import { formatPrice, getLocalizedField, isPromoActive, getPromoPercent } from "@/lib/utils";
 import ImageGallery from "@/components/shop/ImageGallery";
@@ -15,7 +16,7 @@ import { sendCapiEvent, buildHashedUserData } from "@/lib/meta/server";
 import { generateEventId } from "@/lib/meta/pixel";
 
 interface ProductPageProps {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -24,14 +25,17 @@ export async function generateStaticParams() {
 
 export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params: { locale, slug } }: ProductPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
   const product = await prisma.product.findUnique({ where: { slug } });
   if (!product) return {};
   return { title: getLocalizedField(product.name, locale) };
 }
 
-export default async function ProductPage({ params: { locale, slug } }: ProductPageProps) {
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { locale, slug } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("product");
   const product = await prisma.product.findUnique({
     where: { slug, active: true },
     include: { category: true },
@@ -52,7 +56,7 @@ export default async function ProductPage({ params: { locale, slug } }: ProductP
   const isLowStock = product.stock > 0 && product.stock <= 5;
 
   const eventId = generateEventId();
-  const hdrs = headers();
+  const hdrs = await headers();
   const ip =
     hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     hdrs.get("x-real-ip") ??
@@ -91,9 +95,9 @@ export default async function ProductPage({ params: { locale, slug } }: ProductP
         price={price}
       />
       <nav className="flex items-center gap-2 text-sm text-[#9CA3AF] mb-8">
-        <Link href={`/${locale}`} className="hover:text-[#111210] transition-colors">Accueil</Link>
+        <Link href={`/${locale}`} className="hover:text-[#111210] transition-colors">{t("backToShop").split(' ')[0]}</Link>
         <ChevronRight className="w-3.5 h-3.5" />
-        <Link href={`/${locale}/shop`} className="hover:text-[#111210] transition-colors">Boutique</Link>
+        <Link href={`/${locale}/shop`} className="hover:text-[#111210] transition-colors">{t("backToShop")}</Link>
         <ChevronRight className="w-3.5 h-3.5" />
         <Link href={`/${locale}/shop?category=${product.category.slug}`} className="hover:text-[#111210] transition-colors">
           {categoryName}
@@ -109,7 +113,7 @@ export default async function ProductPage({ params: { locale, slug } }: ProductP
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Badge variant="secondary">{categoryName}</Badge>
-              {product.featured && <Badge className="flex items-center gap-1"><Star className="w-3 h-3" /> Bestseller</Badge>}
+              {product.featured && <Badge className="flex items-center gap-1"><Star className="w-3 h-3" /> {t("bestseller")}</Badge>}
               {promoActive && promoPercent > 0 && (
                 <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">-{promoPercent}%</span>
               )}
@@ -129,18 +133,18 @@ export default async function ProductPage({ params: { locale, slug } }: ProductP
             )}
             {promoActive && product.promoEndsAt && (
               <p className="text-xs text-red-500 font-medium mb-2">
-                <Clock className="w-3 h-3 inline mr-1" />Offre valable jusqu&apos;au {new Date(product.promoEndsAt).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
+                <Clock className="w-3 h-3 inline mr-1" />{t("promoEnds", { date: new Date(product.promoEndsAt).toLocaleDateString(locale === "fr" ? "fr-FR" : "en-US", { day: "numeric", month: "long", year: "numeric" }) })}
               </p>
             )}
             <div>
               {isOutOfStock ? (
-                <span className="text-sm text-red-500 font-medium">Rupture de stock</span>
+                <span className="text-sm text-red-500 font-medium">{t("outOfStock")}</span>
               ) : isLowStock ? (
                 <span className="text-sm text-amber-600 font-medium">
-                  Plus que {product.stock} en stock — commandez vite !
+                  {t("lowStock", { count: product.stock })} — commandez vite !
                 </span>
               ) : (
-                <span className="text-sm text-emerald-600 font-medium flex items-center gap-1"><Check className="w-3.5 h-3.5" /> En stock ({product.stock} disponibles)</span>
+                <span className="text-sm text-emerald-600 font-medium flex items-center gap-1"><Check className="w-3.5 h-3.5" /> {t("inStock")} ({product.stock} disponibles)</span>
               )}
             </div>
           </div>
@@ -150,16 +154,16 @@ export default async function ProductPage({ params: { locale, slug } }: ProductP
             disabled={isOutOfStock}
             productName={product.name}
             productPrice={product.price}
-            label={isOutOfStock ? "Rupture de stock" : "Ajouter au panier"}
+            label={isOutOfStock ? t("outOfStock") : t("addToCart")}
             className="text-base py-3 h-auto"
           />
 
           <div className="grid grid-cols-2 gap-3 pt-2">
             {[
-              { icon: Truck, label: "Livraison 24h" },
-              { icon: Lock, label: "Paiement sécurisé" },
-              { icon: CheckCircle, label: "Qualité garantie" },
-              { icon: Headphones, label: "Support 7j/7" },
+              { icon: Truck, label: t("delivery24h") },
+              { icon: Lock, label: t("securePayment") },
+              { icon: CheckCircle, label: t("qualityGuaranteed") },
+              { icon: Headphones, label: t("support7j7") },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="flex items-center gap-2 text-sm text-[#6B7280]">
                 <Icon className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -172,7 +176,7 @@ export default async function ProductPage({ params: { locale, slug } }: ProductP
 
       {similar.length > 0 && (
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-[#111210] mb-6">Produits similaires</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-[#111210] mb-6">{t("similarProducts")}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {similar.map((p: typeof similar[0]) => (
               <ProductCard key={p.id} product={p} locale={locale} />

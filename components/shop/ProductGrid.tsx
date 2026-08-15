@@ -1,5 +1,8 @@
+"use client";
+
 import ProductCard from "./ProductCard";
 import { Package } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface Product {
   id: string;
@@ -18,12 +21,14 @@ interface ProductGridProps {
 }
 
 export default function ProductGrid({ products, locale }: ProductGridProps) {
+  const t = useTranslations("shop");
+
   if (products.length === 0) {
     return (
       <div className="text-center py-24">
         <Package className="w-12 h-12 mx-auto mb-4 text-[#E8E8E3]" />
-        <h3 className="font-semibold text-[#111210] mb-2">Aucun produit trouvé</h3>
-        <p className="text-sm text-[#6B7280]">Essayez de modifier vos filtres de recherche.</p>
+        <h3 className="font-semibold text-[#111210] mb-2">{t("noProducts")}</h3>
+        <p className="text-sm text-[#6B7280]">{t("tryModifyFilters")}</p>
       </div>
     );
   }

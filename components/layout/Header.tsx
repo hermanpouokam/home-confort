@@ -16,7 +16,7 @@ interface HeaderProps {
 export default async function Header({ locale }: HeaderProps) {
   const t = await getTranslations("nav");
   const pt = await getTranslations("promo");
-  const cartItems = getCartFromCookie();
+  const cartItems = await getCartFromCookie();
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   // Fetch up to 3 featured products for nav links
